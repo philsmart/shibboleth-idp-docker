@@ -1,24 +1,24 @@
 #!/bin/bash
 
 # Password for any auto-generated user-facing TLS credential
-UFPASS=userfacing-changethis
+UFPASS=changeit
 
 # Password for any auto-generated cookie encryption keystore
-SEALPASS=sealer-changethis
+SEALPASS=changeit
 
 # Scope for the IdP
-SCOPE=iay.org.uk
+SCOPE=pi.local
 
 # Host name for the container
-HOST=idp2.$SCOPE
+HOST=$SCOPE
 
 # Entity ID for the identity provider
 ENTITYID=https://$HOST/idp/shibboleth
 
 
 
-DIST=/data/shibboleth-dist
-IDP_HOME=/opt/shibboleth-idp
+DIST=`pwd`/fetched/shibboleth-dist
+IDP_HOME=`pwd`/shibboleth-idp
 
 #
 # Set up the property files for the Shibboleth install.
@@ -35,8 +35,8 @@ echo \# Properties controlling the installation of the Shibboleth IdP>$I
 S=$DIST/idp.merge.properties
 echo idp.scope=$SCOPE>>$S
 echo idp.entityID=$ENTITYID>>$S
-echo idp.sealer.storePassword=$SEALPASS>>$S
-echo idp.sealer.keyPassword=$SEALPASS>>$S
+#echo idp.sealer.storePassword=$SEALPASS>>$S
+#echo idp.sealer.keyPassword=$SEALPASS>>$S
 
 #
 # Perform the Shibboleth IdP install process.
